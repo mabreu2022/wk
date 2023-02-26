@@ -14,8 +14,8 @@ object Form1: TForm1
   Position = poScreenCenter
   TextHeight = 15
   object MainMenu1: TMainMenu
-    Left = 38
-    Top = 40
+    Left = 96
+    Top = 50
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object Pessoas1: TMenuItem
