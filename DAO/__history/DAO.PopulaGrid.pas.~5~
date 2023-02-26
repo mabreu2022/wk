@@ -1,0 +1,83 @@
+unit DAO.PopulaGrid;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef,
+  FireDAC.VCLUI.Wait,
+  Data.DB,
+  FireDAC.Comp.Client,
+  DAO.Conexao,
+  Vcl.Dialogs,
+  Classe.Pessoas;
+
+type
+  TPopularGrid = class
+    private
+      FConn: TFDConnection;
+    public
+      procedure PopulaGrid;
+      constructor Create;
+     destructor Destroy; override;
+  end;
+
+implementation
+
+uses
+  View.Cadastros.Pessoas;
+
+{ TPopularGrid }
+
+constructor TPopularGrid.Create;
+begin
+  FConn:= TConnection.CreateConnection;
+end;
+
+destructor TPopularGrid.Destroy;
+begin
+  if Assigned(FConn) then
+    Fconn.Free;
+  inherited;
+end;
+
+procedure TPopularGrid.PopulaGrid;
+var
+  Conexao: TConnection;
+  QryPessoa: TFDQuery;
+  DS: TDatasource;
+  View: TForm2;
+begin
+  try
+    Conexao:= TConnection.Create;
+    QryPessoa:= TFDQuery.Create(nil);
+    QryPessoa.Connection:= Conexao.CreateConnection;
+    QryPessoa.SQL.Add('Select idpessoa,nmprimeiro from public.pessoa');
+    QryPessoa.Open;
+
+    try
+      DS := TDatasource.Create(nil);
+      DS.dataset:= QryPessoa;
+      View.DBGrid1.DataSource:= DS;
+      View.DBGrid1.DataSource.DataSet.Refresh();
+    finally
+      DS.Free;
+    end;
+
+  finally
+    //QryPessoa.Free;
+  end;
+end;
+
+end.

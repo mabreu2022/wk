@@ -1,0 +1,51 @@
+unit DAO.Delete;
+
+interface
+
+uses
+    System.SysUtils,
+  System.Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef,
+  FireDAC.VCLUI.Wait,
+  Data.DB,
+  FireDAC.Comp.Client,
+  DAO.Conexao,
+  Vcl.Dialogs,
+  Classe.Pessoas;
+
+type
+  TExcluir = class
+    private
+       FConn: TFDConnection;
+    public
+      constructor Create;
+      destructor Destroy; override;
+  end;
+
+implementation
+
+{ TExcluir }
+
+constructor TExcluir.Create;
+begin
+  FConn:= TConnection.CreateConnection;
+end;
+
+destructor TExcluir.Destroy;
+begin
+  if Assigned(FConn) then
+    Fconn.Free;
+  inherited;
+end;
+
+end.

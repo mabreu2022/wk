@@ -1,0 +1,24 @@
+program TesteWK;
+
+uses
+  Vcl.Forms,
+  UMainForm in 'UMainForm.pas' {Form1},
+  Dao.Conexao in 'DAO\Dao.Conexao.pas',
+  Dao.Inserir in 'DAO\Dao.Inserir.pas',
+  DAO.Update in 'DAO\DAO.Update.pas',
+  DAO.Delete in 'DAO\DAO.Delete.pas',
+  DAO.Lote in 'DAO\DAO.Lote.pas',
+  dm in 'DAO\dm.pas' {DataModule1: TDataModule},
+  View.Cadastros.Pessoas in 'View\View.Cadastros.Pessoas.pas' {Form2},
+  Model.Pessoas in 'Model\Model.Pessoas.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TForm2, Form2);
+  Application.Run;
+end.

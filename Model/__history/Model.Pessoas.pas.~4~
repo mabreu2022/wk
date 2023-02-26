@@ -1,0 +1,90 @@
+unit Model.Pessoas;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.VCLUI.Wait,
+  Data.DB,
+  FireDAC.Comp.Client;
+
+type
+  TRegrasDeNegocio = class
+    private
+
+    public
+      class function TestaseTemEndereco(aIdEndereco, auf, aCidade, aBairro,aLogradouro,aComplemento: string): Boolean;
+
+  end;
+
+implementation
+
+{ TPessoas }
+
+
+
+{ TPessoas }
+
+class function TRegrasDeNegocio.TestaseTemEndereco(aIdEndereco, auf, aCidade, aBairro,
+  aLogradouro, aComplemento: string): Boolean;
+begin
+
+  if aIdEndereco = '' then
+  begin
+    raise Exception.Create('É necessário prencher o Id Endereço.');
+    Result:= False;
+    exit;
+  end;
+
+  if auf = '' then
+  begin
+    raise Exception.Create('É necessário preencher a UF.');
+    Result:= False;
+    exit;
+  end;
+
+  if aCidade = '' then
+  begin
+    raise Exception.Create('É necessário preencher a Cidade.');
+    Result:= False;
+    exit;
+  end;
+
+  if aBairro = '' then
+  begin
+    raise Exception.Create('É necessário preencher o Bairro.');
+    Result:= False;
+    exit;
+  end;
+
+  if aLogradouro = '' then
+  begin
+    raise Exception.Create('É necessário preencher o Logradouro.');
+    Result:= False;
+    exit;
+  end;
+
+  if aComplemento = '' then
+  begin
+    raise Exception.Create('Énecessário preencher a UF');
+    Result:= False;
+    exit;
+  end;
+
+end;
+
+{ TPessoas }
+
+
+
+end.

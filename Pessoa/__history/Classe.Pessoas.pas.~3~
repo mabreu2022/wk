@@ -1,0 +1,85 @@
+unit Classe.Pessoas;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef,
+  FireDAC.VCLUI.Wait,
+  Data.DB,
+  FireDAC.Comp.Client,
+  DAO.Conexao,
+  Vcl.Dialogs;
+
+type
+  TPessoa = class
+    private
+    Fnmprimeiro  : string;
+    Fdtregistro  : TDate;
+    Fnmsegundo   : string;
+    Fdsdocumento : string;
+    Fidpessoa    : int64;
+    Fflnatureza  : smallint;
+    procedure Setdsdocumento(const Value: string);
+    procedure Setdtregistro(const Value: TDate);
+    procedure Setflnatureza(const Value: smallint);
+    procedure Setidpessoa(const Value: int64);
+    procedure Setnmprimeiro(const Value: string);
+    procedure Setnmsegundo(const Value: string);
+
+    public
+       property idpessoa : int64      read Fidpessoa    write Setidpessoa;
+       property flnatureza : smallint read Fflnatureza  write Setflnatureza;
+       property dsdocumento: string   read Fdsdocumento write Setdsdocumento;
+       property nmprimeiro: string    read Fnmprimeiro  write Setnmprimeiro;
+       property nmsegundo: string     read Fnmsegundo   write Setnmsegundo;
+       property dtregistro:  TDate    read Fdtregistro  write Setdtregistro;
+
+  end;
+
+implementation
+
+{ TPessoa }
+
+procedure TPessoa.Setdsdocumento(const Value: string);
+begin
+  Fdsdocumento := Value;
+end;
+
+procedure TPessoa.Setdtregistro(const Value: TDate);
+begin
+  Fdtregistro := Value;
+end;
+
+procedure TPessoa.Setflnatureza(const Value: smallint);
+begin
+  Fflnatureza := Value;
+end;
+
+procedure TPessoa.Setidpessoa(const Value: int64);
+begin
+  Fidpessoa := Value;
+end;
+
+procedure TPessoa.Setnmprimeiro(const Value: string);
+begin
+  Fnmprimeiro := Value;
+end;
+
+procedure TPessoa.Setnmsegundo(const Value: string);
+begin
+  Fnmsegundo := Value;
+end;
+
+end.
